@@ -7,7 +7,7 @@ As a go application, you will need to build based upon the environment it will b
 ## Authentication
 YouTube prefers using the oath2 standard. In order to authenticate properly, the following steps must be implemented.
 
-1. change `example_client_secret.json` to 'client_secret.json'
+1. change `example_client_secret.json` to `client_secret.json`
 2. Enter your Google Cloud credentials
 3. Run the applicatin (seel below)
 
