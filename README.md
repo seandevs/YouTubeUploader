@@ -9,7 +9,7 @@ YouTube prefers using the oath2 standard. In order to authenticate properly, the
 
 1. change `example_client_secret.json` to `client_secret.json`
 2. Enter your Google Cloud credentials
-3. Run the applicatin (seel below)
+3. Run the application (seel below)
 
 ## Running
 After account authentication (oauth2), follow the below steps to upload the videos. Note that there is a constraint based upon your account limits.
