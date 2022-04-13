@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"io/ioutil"
 	"log"
 
 	"golang.org/x/net/context"
@@ -16,6 +18,11 @@ var (
 	keywords    = flag.String("keywords", "", "Comma separated list of video keywords")
 	privacy     = flag.String("privacy", "public", "Video privacy status")
 )
+
+func welcome(directory string) {
+	videos, _ := ioutil.ReadDir(directory)
+	fmt.Printf("Starting process to upload %d video/s to YouTube\n", len(videos))
+}
 
 func main() {
 
@@ -38,9 +45,11 @@ func main() {
 		log.Fatalf("error creating youTube service: %v", err)
 	}
 
+	welcome(*directory)
+
 	uploadVideos(
 		parseVideos(
-			getVideos(),
+			getVideos(*directory),
 			*description,
 			*category,
 			*privacy,

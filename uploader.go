@@ -33,10 +33,10 @@ func contains(elems []string, v string) bool {
 }
 
 // getVideos gets the videos from a given directory and adds them to a channel
-func getVideos() <-chan string {
+func getVideos(directory string) <-chan string {
 	c := make(chan string)
 	go func() {
-		files, err := ioutil.ReadDir(*directory)
+		files, err := ioutil.ReadDir(directory)
 
 		if err != nil {
 			log.Fatal(err)
@@ -46,7 +46,7 @@ func getVideos() <-chan string {
 		for _, file := range files {
 			ext := filepath.Ext(file.Name())
 			if contains(extensions, strings.ToLower(ext)) {
-				c <- *directory + file.Name()
+				c <- directory + file.Name()
 			}
 		}
 
@@ -63,7 +63,8 @@ func parseVideos(c <-chan string, description string, category string, privacy s
 		for line := range c {
 			_, filename := filepath.Split(line)
 			t := strings.TrimSuffix(filename, filepath.Ext(filename))
-			title := strings.Replace(t, "_", " ", -1)
+			re := strings.NewReplacer("_", " ", ":", "/")
+			title := re.Replace(t)
 
 			video := &youTubeVideo{
 				File:        line,

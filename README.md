@@ -14,7 +14,7 @@ YouTube prefers using the oath2 standard. In order to authenticate properly, the
 ## Running
 After account authentication (oauth2), follow the below steps to upload the videos. Note that there is a constraint based upon your account limits.
 1. Move all videos into the video 
-2. Run `$ ./youTubeUpload` if running the binary or if developing `$ go run upload_video.go errors.go oauth2.go`
+2. Run `$ ./youTubeUpload` if running the binary or if developing `$ go run run.go errors.go oauth2.go`
 
 The following arguments are allowed.
 
