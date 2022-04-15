@@ -37,6 +37,7 @@ func getVideos(directory string) <-chan string {
 	c := make(chan string)
 	go func() {
 		files, err := ioutil.ReadDir(directory)
+		count := 0
 
 		if err != nil {
 			log.Fatal(err)
@@ -47,8 +48,11 @@ func getVideos(directory string) <-chan string {
 			ext := filepath.Ext(file.Name())
 			if contains(extensions, strings.ToLower(ext)) {
 				c <- directory + file.Name()
+				count++
 			}
 		}
+
+		fmt.Printf("Starting process to upload %d video/s to YouTube\n", count)
 
 		close(c)
 	}()
