@@ -35,9 +35,10 @@ func contains(elems []string, v string) bool {
 // getVideos gets the videos from a given directory and adds them to a channel
 func getVideos(directory string) <-chan string {
 	c := make(chan string)
+
 	go func() {
 		files, err := ioutil.ReadDir(directory)
-		count := 0
+		fmt.Printf("Starting process to upload %d video/s to YouTube\n", len(files))
 
 		if err != nil {
 			log.Fatal(err)
@@ -48,11 +49,8 @@ func getVideos(directory string) <-chan string {
 			ext := filepath.Ext(file.Name())
 			if contains(extensions, strings.ToLower(ext)) {
 				c <- directory + file.Name()
-				count++
 			}
 		}
-
-		fmt.Printf("Starting process to upload %d video/s to YouTube\n", count)
 
 		close(c)
 	}()
