@@ -11,10 +11,18 @@ YouTube prefers using the oath2 standard. In order to authenticate properly, the
 2. Enter your Google Cloud credentials
 3. Run the application (see below)
 
+## Installation
+1. Create a folder to put the `youTubeUpload` executable file.
+2. Create a folder inside the folder from step `1.` called `videos`
+3. Inside the folder from step `1.` run `$ chmod u+x youTubeUpload`
+4. Run the application by following the steps in **Running** below.  
+--> If running on a Mac, You may be asked to give permissions to the application. Directions can be found at <https://support.apple.com/en-us/HT202491>. _Note that you may need to run the application again after updating permissions._  
+
 ## Running
-After account authentication (oauth2), follow the below steps to upload the videos. Note that there is a constraint based upon your account limits.
-1. Move all videos into the video 
-2. Run `$ ./youTubeUpload` if running the binary or if developing `$ go run run.go errors.go oauth2.go`
+Follow the below steps to upload the videos. Note that there is a constraint based upon your account limits.
+1. Move all videos to be uploaded into the `videos` folder.
+2. Run `$ ./youTubeUpload` if running the binary or if developing `$ go run run.go errors.go oauth2.go uploader.go`  
+_You may need to authenticate. Follow directions in the terminal and on the webpage presented by Google._  
 
 The following arguments are allowed.
 
